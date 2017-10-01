@@ -36,18 +36,18 @@
 {% else %}
     <div class = "row justify-content-md-center">
         <div class="jumbotron bg-light" style="width: 20rem;">
-        <h1 class="display-3"> >_< <br /></h1>
+        <h1 class="display-3"> >_< </h1>
         <hr class="my-4">
             <form class="form-group" method="POST" name="signup" action="{% url 'signup' %}">{% csrf_token %} <!--secure-->
                 {% for field in form %}
                 <p>
-                    {{ field.label }}
+                    <label>{{ field.label }}</label>
                     {{ field }}
                     {% if field.help_text %}
                     <small style="display: none">{{ field.help_text }}</small>
                     {% endif %}
                     {% for error in field.errors %}
-                    <p style="color: red">{{ error }}</p>
+                    <smaill style="color:red">{{ error }}</smaill>
                     {% endfor %}
                 </p>
                 {% endfor %}

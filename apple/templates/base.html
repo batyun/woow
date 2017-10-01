@@ -4,10 +4,13 @@
         <title>asdf</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+
         <!-- -->
         <style>
         html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
@@ -18,7 +21,7 @@
 
 
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-between">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-between fixed-top">
         <a class="navbar-brand" href="/">
             <img src="{% static "images/teeth.jpg" %}" width="30" height="30" class="d-inline-block align-top" alt="">
             HIS TEETH
@@ -29,54 +32,11 @@
         <p>Hello, {{ user.username }} <small>(<a href="{% url 'logout' %}">Sign out</a>)</small></p>
     {% else %}
         <a href="{% url 'login' %}">Sign in</a>
-        <!-- Button trigger modal
-        <button type="button" class="btn btn-outline-success my-2 my-sm-0" data-toggle="modal" data-target="#exampleModal">
-          Sign in
-        </button>-->
+
     {% endif %}
-        <!-- Modal
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Sign in</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">...
-
-                {% if form.errors %}
-                    <p>Your username and password didn't match. Please try again.</p>
-                {% endif %}
-
-                <form method="post" action="{% url 'login' %}">
-                {% csrf_token %}
-                    <table>
-                    <tr>
-                        <td>{{ form.email.label_tag }}</td>
-                        <td>{{ form.email }}</td>
-                    </tr>
-                    <tr>
-                        <td>{{ form.password1.label_tag }}</td>
-                        <td>{{ form.password1 }}</td>
-                    </tr>
-                    </table>
-
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <input type="submit" class="btn btn-primary" value="Sign in" />
-                        <input type="hidden" name="next" value="{{ next }}" />
-                    </div>
-
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>-->
-
     </nav>
-    <div class="container"
+
+    <div class="container">
     <div class="container-fluid">
 
         {% block content %}
@@ -85,5 +45,43 @@
     </div>
     </div>
 
+    <div class="footer">
+
+        <small class="transparent">
+
+            <a href = "https://github.com/jiyuniverse/woow">https://github.com/jiyuniverse/woow</a>
+            <span class="badge badge-info badge-success">CODE</span>
+        </small>
+    </div>
     </body>
+
+
 </html>
+
+
+
+            <!-- Button trigger modal
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+              Code
+            </button>-->
+
+            <!-- Modal
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Code</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    https://github.com/jiyuniverse/woow
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            -->
