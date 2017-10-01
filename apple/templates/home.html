@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class = "row justify-content-md-center">
+    <div class="jumbotron bg-light" style="width: 40rem;">
+    {% if user.is_authenticated %}
+        <!--  authenticated:  MAIN CONTENT -->
+        <form class="form-group" method="POST">{% csrf_token %}
+            {% for field in talk_form %}
+            {{ field }}
+            {% endfor %}
+            <button type="submit" name="talk" class="btn btn-primary" style="width: 100%">send</button>
+        </form>
+        <hr class="my-4">
+        <div>
+        {% for talk in talks %}
+            <p>
+            {% if user == talk.author %}
+                <a class="close" href="{% url 'talk_remove' pk=talk.pk %}"><span>&times;</span></a>
+            {% endif %}
+                {% if talk.author == user %}
+                    <span class="badge badge-primary">{{ talk.author.username }}</span></h1>
+                {% else %}
+                    <span class="badge badge-secondary">{{ talk.author.username }}</span></h1>
+                {% endif %}
+
+                {{ talk.text|linebreaksbr }}</p>
+        {% endfor %}
+        </div>
+    </div>
+
+</div>
+
+
+<!--  not authenticated:  SIGN UP FORM -->
+{% else %}
+    <div class = "row justify-content-md-center">
+        <div class="jumbotron bg-light" style="width: 20rem;">
+        <h1 class="display-3"> >_< <br /></h1>
+        <hr class="my-4">
+            <form class="form-group" method="POST" name="signup" action="{% url 'signup' %}">{% csrf_token %} <!--secure-->
+                {% for field in form %}
+                <p>
+                    {{ field.label }}
+                    {{ field }}
+                    {% if field.help_text %}
+                    <small style="display: none">{{ field.help_text }}</small>
+                    {% endif %}
+                    {% for error in field.errors %}
+                    <p style="color: red">{{ error }}</p>
+                    {% endfor %}
+                </p>
+                {% endfor %}
+
+                <input type="submit" name="signup" class="btn btn-primary" style="width: 100%"
+                value ="Sign up for free"
+                       onclick="this.disabled=true;this.value='Just a moment...'; this.form.submit();">
+
+            </form>
+        </div>
+    </div>
+{% endif %}
+
+
+
+{% endblock %}
+
+
+
+
+

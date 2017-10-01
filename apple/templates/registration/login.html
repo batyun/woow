@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class = "row justify-content-md-center">
+
+    {% if user.is_authenticated %}
+        <div class="jumbotron bg-light" style="width: 20rem;">
+        please sign out first,
+        </div>
+    {% else %}
+        <div class="jumbotron bg-light" style="width: 20rem;">
+        <h1 class="display-3"> Sign in <br /></h1>
+        <hr class="my-4">
+            {% if form.errors %}
+                <p> {{ form.error_code }}</p>
+                <p>Your username and password didn't match. Please try again.</p>
+            {% endif %}
+
+            <form class="form-group" method="post" action="{% url 'login' %}">
+            {% csrf_token %}
+                {% for field in form %}
+                <p>
+                    {{ field.label }}
+                    {{ field }}
+                    {% if field.help_text %}
+                    <small style="display: none">{{ field.help_text }}</small>
+                    {% endif %}
+                    {% for error in field.errors %}
+                    <p style="color: red">{{ error }}</p>
+                    {% endfor %}
+                </p>
+                {% endfor %}
+
+                <input type="submit" class="btn btn-primary" value="Sign in" />
+                <input type="hidden" name="next" value="{{ next }}" />
+            </form>
+        </div>
+    </div>
+{% endif %}
+{% endblock %}
