@@ -79,3 +79,7 @@ def talk_remove(request, pk):
     talk = get_object_or_404(SimpleTalk, pk=pk)
     talk.delete()
     return redirect('home')
+
+
+def world(request):
+    return render(request, 'world.html')

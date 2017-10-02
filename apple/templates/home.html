@@ -1,15 +1,15 @@
 {% extends 'base.html' %}
-
 {% block content %}
 <div class = "row justify-content-md-center">
     <div class="jumbotron bg-light" style="width: 40rem;">
     {% if user.is_authenticated %}
+
         <!--  authenticated:  MAIN CONTENT -->
         <form class="form-group" method="POST">{% csrf_token %}
             {% for field in talk_form %}
             {{ field }}
             {% endfor %}
-            <button type="submit" name="talk" class="btn btn-primary" style="width: 100%">send</button>
+            <button type="submit" name="talk" class="btn btn-primary" style="width: 100%">push</button>
         </form>
         <hr class="my-4">
         <div>
